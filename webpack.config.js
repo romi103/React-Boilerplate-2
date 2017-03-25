@@ -1,20 +1,19 @@
 var webpack = require('webpack');
 
 module.exports = {
-  entry: [
-      'script!jquery/dist/jquery.min.js',
-      'script!foundation-sites/dist/foundation.min.js',
-      './app/app.jsx'
-  ],
-  externals: {
-      jquery: 'jQuery'
-  },
-  plugins: [
-      new webpack.ProvidePlugin({
-          '$':'jquery',
-          'jQuery':'jquery'
-      })
-  ],
+    entry: [
+        'script!jquery/dist/jquery.min.js',
+        './app/app.jsx'
+    ],
+    externals: {
+        jquery: 'jQuery'
+    },
+    plugins: [
+        new webpack.ProvidePlugin({
+            '$': 'jquery',
+            'jQuery': 'jquery'
+        })
+    ],
     output: {
         path: __dirname,
         filename: './public/bundle.js'
@@ -28,18 +27,16 @@ module.exports = {
         extensions: ['', '.js', '.jsx']
     },
     module: {
-        loaders: [
-            {
-                loader: 'babel-loader',
-                query: {
-                    presets: ['react', 'es2015', 'stage-0']
-                },
-                test: /\.jsx?$/,
-                exclude:/(node_module|bower_components)/
-    
-            }
-        ]
+        loaders: [{
+            loader: 'babel-loader',
+            query: {
+                presets: ['react', 'es2015', 'stage-0']
+            },
+            test: /\.jsx?$/,
+            exclude: /(node_module|bower_components)/
+
+        }]
     },
     devtool: 'cheap-module-eval-map'
-    
+
 };
